@@ -30,8 +30,25 @@ while opcion != "9":
     elif opcion == "7":
         print("Generar HTML")
     elif opcion == "8":
-        print("Elija una opción\nA)Acciones por día recogido\nB)Acciones con algunas palabras clave\nC)Salir del submenú")
+        submenuBitacora() 
     elif opcion == "9":
         print("Ha salido con éxito") 
     else:
         print("Opción no valida") 
+def mostrarSubmenu():
+    print("Submenú de bitácora\n")
+    print("A)Acciones por día recogido\nB)Acciones con algunas palabras clave\nC)Salir del submenú")
+    
+def submenuBitacora():
+    opcionSub = ""
+    while opcionSub != "C" and opcionSub != "c":
+        mostrarSubmenu()
+        opcionSub = input("Elija una opción: ")
+        if opcionSub == "A" or opcionSub == "a":
+            print("Filtrar por día")
+        elif opcionSub == "B" or opcionSub == "b":
+            print("Filtrar por palabra clave")
+        elif opcionSub == "C" or opcionSub == "c":
+            print("Volviendo al menú principal...")
+        else:
+            print("Opción no válida")
