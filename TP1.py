@@ -1,7 +1,7 @@
 tokens = []
 
 def mostrarMenu():
-    print ("Menú\n")
+    print ("\nMenú\n")
     print ("1. Cargar Tokens")
     print ("2. Mostrar tokens")
     print ("3. Agregar/modificar token")
@@ -37,10 +37,24 @@ while opcion != "9":
 
     if opcion == "1":
         print("Cargar Tokens")
-        tokens = [("def","funcion"), ("while", "mientras"), ("return", "devuelva")]
-        for token in tokens:
-         print(token[0], "->", token[1])
-    
+        nombreArchivo = input("Ingrese el nombre del archivo: ")
+        separador = input("Ingrese el separador usado (->): ")
+        try:
+            with open(nombreArchivo, "r", encoding="utf-8") as archivo:
+                for linea in archivo:
+                    partes = linea.strip().split(separador)
+                    if len(partes) == 2:
+                        tokens.append((partes[0], partes[1]))
+                    else:
+                        print("Debe contener dos elementos")
+            print("Tokens cargados: ", len(tokens))
+                   
+            for token in tokens:
+                 print(token[0], "->", token[1])
+                
+        except FileNotFoundError:
+            print("Archivo no encontrado.")
+
     elif opcion == "2":
         print("Mostrar tokens")
     elif opcion == "3":
