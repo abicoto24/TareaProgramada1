@@ -38,7 +38,7 @@ while opcion != "9":
     if opcion == "1":
         print("Cargar Tokens")
         nombreArchivo = input("Ingrese el nombre del archivo: ")
-        separador = input("Ingrese el separador usado (->): ")
+        separador = input("Ingrese el separador (->): ")
         try:
             with open(nombreArchivo, "r", encoding="utf-8") as archivo:
                 for linea in archivo:
