@@ -1,3 +1,5 @@
+tokens = []
+
 def mostrarMenu():
     print ("Menú\n")
     print ("1. Cargar Tokens")
@@ -10,6 +12,24 @@ def mostrarMenu():
     print ("8. Submenú de bitácora")
     print ("9. Salir\n")
 
+def mostrarSubmenu():
+    print("Submenú de bitácora\n")
+    print("A)Acciones por día recogido\nB)Acciones con algunas palabras clave\nC)Salir del submenú")
+
+def submenuBitacora():
+    opcionSub = ""
+    while opcionSub != "C" and opcionSub != "c":
+        mostrarSubmenu()
+        opcionSub = input("Elija una opción: ")
+        if opcionSub == "A" or opcionSub == "a":
+            print("Filtrar por día")
+        elif opcionSub == "B" or opcionSub == "b":
+            print("Filtrar por palabra clave")
+        elif opcionSub == "C" or opcionSub == "c":
+            print("Volviendo al menú principal...")
+        else:
+            print("Opción no válida")
+
 opcion = ""
 while opcion != "9":
     mostrarMenu()
@@ -17,6 +37,10 @@ while opcion != "9":
 
     if opcion == "1":
         print("Cargar Tokens")
+        tokens = [("def","funcion"), ("while", "mientras"), ("return", "devuelva")]
+        for token in tokens:
+         print(token[0], "->", token[1])
+    
     elif opcion == "2":
         print("Mostrar tokens")
     elif opcion == "3":
@@ -34,21 +58,5 @@ while opcion != "9":
     elif opcion == "9":
         print("Ha salido con éxito") 
     else:
-        print("Opción no valida") 
-def mostrarSubmenu():
-    print("Submenú de bitácora\n")
-    print("A)Acciones por día recogido\nB)Acciones con algunas palabras clave\nC)Salir del submenú")
-    
-def submenuBitacora():
-    opcionSub = ""
-    while opcionSub != "C" and opcionSub != "c":
-        mostrarSubmenu()
-        opcionSub = input("Elija una opción: ")
-        if opcionSub == "A" or opcionSub == "a":
-            print("Filtrar por día")
-        elif opcionSub == "B" or opcionSub == "b":
-            print("Filtrar por palabra clave")
-        elif opcionSub == "C" or opcionSub == "c":
-            print("Volviendo al menú principal...")
-        else:
-            print("Opción no válida")
+        print("Opción no valida")
+
