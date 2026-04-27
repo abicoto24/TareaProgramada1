@@ -59,6 +59,9 @@ while opcion != "9":
         print("Mostrar tokens")
     elif opcion == "3":
         print("Agregar/modificar tokens")
+        cadena = input("ingrese la cadena de tokens: ")
+
+
     elif opcion == "4":
         print("Guardar tokens")
     elif opcion == "5":
