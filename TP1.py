@@ -44,7 +44,7 @@ while opcion != "9":
                 for linea in archivo:
                     partes = linea.strip().split(separador)
                     if len(partes) == 2:
-                        tokens.append((partes[0], partes[1]))
+                        tokens.append((partes[0].strip(), partes[1].strip()))
                     else:
                         print("Debe contener dos elementos")
             print("Tokens cargados: ", len(tokens))
@@ -66,11 +66,20 @@ while opcion != "9":
             separador = input("Ingrese el separador (->): ")
             pares = cadena.split("|")
             for par in pares:
-                pares = par.strip().split(separador)
+                partes = par.strip().split(separador)
                 if len(partes) == 2:
                     palabra = partes[0].strip()   
                     nuevoToken = partes[1].strip()
-
+                    encontrado = False
+                    for i in range (len(tokens)):
+                        if tokens[i][0] == palabra:
+                            encontrado = True
+                            tokens[i] = (palabra, nuevoToken)
+                            print("Token actualizado: ", palabra, "->", nuevoToken)
+                            break
+                    if not encontrado: 
+                        tokens.append((palabra, nuevoToken))
+                        print ("Token agregado: ", palabra, "->", nuevoToken)
 
     elif opcion == "4":
         print("Guardar tokens")
