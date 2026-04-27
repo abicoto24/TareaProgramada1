@@ -60,11 +60,16 @@ while opcion != "9":
     elif opcion == "3":
         print("Agregar/modificar tokens")
         cadena = input("ingrese los tokens o escriba 'cancelar' para salir: ")
-        if cadena.lower() =="cancelar":
+        if cadena.lower() == "cancelar":
             print("Ha cancelado")
         else:
             separador = input("Ingrese el separador (->): ")
-        pares = cadena.split("|")
+            pares = cadena.split("|")
+            for par in pares:
+                pares = par.strip().split(separador)
+                if len(partes) == 2:
+                    palabra = partes[0].strip()   
+                    nuevoToken = partes[1].strip()
 
 
     elif opcion == "4":
