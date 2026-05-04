@@ -30,6 +30,22 @@ def submenuBitacora():
         else:
             print("Opción no válida")
 
+import re
+
+def traducirLinea(linea, tokens):
+    partes = re.findall(r'\b\w+\b|[^\w\s]|\s+', linea)
+    resultado = []
+    for parte in partes:
+        reemplazado = False
+        for token in tokens:
+            if parte == token[0].strip():
+                resultado.append(token[1].strip())
+                reemplazado = True
+                break
+        if not reemplazado:
+            resultado.append(parte)
+    return "".join(resultado)
+
 opcion = ""
 while opcion != "9":
     mostrarMenu()
@@ -63,7 +79,7 @@ while opcion != "9":
         if cadena.lower() == "cancelar":
             print("Ha cancelado")
         else:
-            separador = input("Ingrese el separador (->): ")
+            separador = input("Ingrese el separador (->) y separe cada token con (|): ")
             pares = cadena.split("|")
             for par in pares:
                 partes = par.strip().split(separador)
