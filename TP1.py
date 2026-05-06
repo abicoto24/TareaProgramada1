@@ -1,3 +1,5 @@
+import re
+
 tokens = []
 
 def mostrarMenu():
@@ -30,7 +32,7 @@ def submenuBitacora():
         else:
             print("Opción no válida")
 
-import re
+
 
 def traducirLinea(linea, tokens):
     partes = re.findall(r'\b\w+\b|[^\w\s]|\s+', linea)
@@ -101,6 +103,21 @@ while opcion != "9":
         print("Guardar tokens")
     elif opcion == "5":
         print("Traducir código")
+        archivoTraducir = input("Ingrese el nombre del archivo a traducir: ")
+        archivoSalida = input("Ingrese el nombre de archivo de salida: ")
+        try: 
+            with open(archivoTraducir, "r", encoding = "utf-8") as entrada:
+                with open(archivoSalida, "w", encoding = "utf-8") as salida:
+                    for linea in entrada:
+                        lineaTraducida = traducirLinea(linea, tokens)
+                        salida.write(lineaTraducida)
+            print("Traducción completada con éxito.")
+        except FileNotFoundError:
+            print("Archivo no encontrado.")
+
+
+
+        
     elif opcion == "6":
         print("Generar CSV")
     elif opcion == "7":
