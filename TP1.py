@@ -1,6 +1,6 @@
 import re
 from datetime import datetime
-ahora = datetime.now
+ahora = datetime.now()
 print(ahora.strftime("%d/%m/%y-%H:%M:%S"))
 
 tokens = []
@@ -122,7 +122,16 @@ while opcion != "9":
         print("Generar CSV")
     elif opcion == "7":
         print("Generar HTML")
-        
+    
+        titulo = input("Ingrese el título del reporte: ")
+        archivoTraducir = input("Ingrese el archivo a traducir: ")
+        ahora = datetime.now()
+        fechaHora = ahora.strftime("%d/%m/%y-%H:%M:%S")
+        nombreHTML = "reporteHTML_" + fechaHora.replace("/", "-").replace(":", "-") + ".html"
+        conteos = []
+        for token in tokens:
+            conteos.append((token[0], 0))
+    
 
 
 
