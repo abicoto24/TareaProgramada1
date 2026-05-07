@@ -1,9 +1,8 @@
 import re
 from datetime import datetime
-ahora = datetime.now()
-print(ahora.strftime("%d/%m/%y-%H:%M:%S"))
 
 tokens = []
+conteos = []
 
 def mostrarMenu():
     print ("\nMenú\n")
@@ -35,9 +34,7 @@ def submenuBitacora():
         else:
             print("Opción no válida")
 
-
-
-def traducirLinea(linea, tokens):
+def traducirLinea(linea, tokens, conteos):
     partes = re.findall(r'\b\w+\b|[^\w\s]|\s+', linea)
     resultado = []
     for parte in partes:
@@ -46,6 +43,10 @@ def traducirLinea(linea, tokens):
             if parte == token[0].strip():
                 resultado.append(token[1].strip())
                 reemplazado = True
+                for i in range (len(conteos)):
+                    if conteos[i][0] == token[0].strip():
+                        conteos[i] = (conteos[i][0], conteos[i][1] + 1)
+                        break
                 break
         if not reemplazado:
             resultado.append(parte)
@@ -112,7 +113,7 @@ while opcion != "9":
             with open(archivoTraducir, "r", encoding = "utf-8") as entrada:
                 with open(archivoSalida, "w", encoding = "utf-8") as salida:
                     for linea in entrada:
-                        lineaTraducida = traducirLinea(linea, tokens)
+                        lineaTraducida = traducirLinea(linea, tokens, conteos)
                         salida.write(lineaTraducida)
             print("Traducción completada con éxito.")
         except FileNotFoundError:
@@ -122,13 +123,11 @@ while opcion != "9":
         print("Generar CSV")
     elif opcion == "7":
         print("Generar HTML")
-    
         titulo = input("Ingrese el título del reporte: ")
         archivoTraducir = input("Ingrese el archivo a traducir: ")
         ahora = datetime.now()
         fechaHora = ahora.strftime("%d/%m/%y-%H:%M:%S")
         nombreHTML = "reporteHTML_" + fechaHora.replace("/", "-").replace(":", "-") + ".html"
-        conteos = []
         for token in tokens:
             conteos.append((token[0], 0))
     
