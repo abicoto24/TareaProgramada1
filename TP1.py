@@ -1,4 +1,7 @@
 import re
+from datetime import datetime
+ahora = datetime.now
+print(ahora.strftime("%d/%m/%y-%H:%M:%S"))
 
 tokens = []
 
@@ -114,14 +117,15 @@ while opcion != "9":
             print("Traducción completada con éxito.")
         except FileNotFoundError:
             print("Archivo no encontrado.")
-
-
-
-        
+       
     elif opcion == "6":
         print("Generar CSV")
     elif opcion == "7":
         print("Generar HTML")
+        
+
+
+
     elif opcion == "8":
         submenuBitacora() 
     elif opcion == "9":
