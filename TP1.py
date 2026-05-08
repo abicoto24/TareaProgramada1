@@ -130,7 +130,33 @@ while opcion != "9":
         nombreHTML = "reporteHTML_" + fechaHora.replace("/", "-").replace(":", "-") + ".html"
         for token in tokens:
             conteos.append((token[0], 0))
-    
+        with open(nombreHTML, "w", encoding="utf-8") as html:
+                html.write("<!DOCTYPE html>\n")
+                html.write("<html>\n")
+                html.write(f"<head><title>{titulo}</title></head>\n")
+                html.write("<body>\n")
+                html.write("<h1>Reporte de Traducción</h1>\n")
+                html.write(f"<h2>Generado el: {fechaHora}</h2>\n")
+                html.write("<table border='1' style='width:100%; text-align:center;'>\n")
+                html.write("<tr><th>Palabra Original</th><th>Reemplazo</th><th>Cantidad</th></tr>\n")
+                
+                for i in range(len(conteos)):
+                    if i % 2 == 0:
+                        color = "#f7983f"
+                    else:
+                        color = "#f752b5"
+                    html.write(f"<tr style='background-color:{color};'>")
+                    html.write(f"<td>{conteos[i][0]}</td>")
+                    html.write(f"<td>{tokens[i][1]}</td>")
+                    html.write(f"<td>{conteos[i][1]}</td>")
+                    html.write("</tr>\n")
+                
+                html.write("</table>\n")
+                html.write("</body>\n")
+                html.write("</html>\n")
+
+        print("Reporte HTML generado:", nombreHTML)
+                
 
 
 
