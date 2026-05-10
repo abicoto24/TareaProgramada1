@@ -16,7 +16,7 @@ while opcion != "9":
     elif opcion == "4":
         print("Guardar tokens")
     elif opcion == "5":
-        traducirCodigo(tokens, conteos)
+        conteos = traducirCodigo(tokens, conteos)
     elif opcion == "6":
         print("Generar CSV")
     elif opcion == "7":
